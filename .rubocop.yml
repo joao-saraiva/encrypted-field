@@ -1,0 +1,12 @@
+# .rubocop.yml
+
+# Configurações globais
+AllCops:
+  Exclude:
+    - 'spec/**/*' # Exclui a pasta spec
+    - 'test/**/*' # Exclui a pasta test
+
+# Configurações específicas para a pasta lib
+lib:
+  Exclude:
+    - 'lib/**/*' # Inclui apenas a pasta lib

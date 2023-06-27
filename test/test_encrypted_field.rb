@@ -34,4 +34,12 @@ class TestEncryptedField < Minitest::Test
 
     assert_equal(encrypted_field.foo_decrypted, 'bar')
   end
+
+  def test_field_get_override
+    secret_key = "Aswertyuioasdfghjkqwertyuiqwerty"
+    encrypted_field = EncryptedField.new(fields: [ { name: 'foo', value: 'bar' } ], secret_key: secret_key, auto_decrypt: true)
+    encrypted_value = encrypted_field.encrypt_field(encrypted_field.fields[0])
+
+    assert_equal(encrypted_field.foo, 'bar')
+  end
 end

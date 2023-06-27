@@ -24,6 +24,14 @@ class TestEncryptedField < Minitest::Test
     encrypted_field = EncryptedField.new(fields: [ { name: 'foo', value: 'bar' } ], secret_key: secret_key)
     encrypted_value = encrypted_field.encrypt_field(encrypted_field.fields[0])
 
-    assert_equal(encrypted_field.decrypt_field(encrypted_value, 'bar'))
+    assert_equal(encrypted_field.decrypt_field(encrypted_value), 'bar')
+  end
+
+  def test_meta_decrypted_method
+    secret_key = "Aswertyuioasdfghjkqwertyuiqwerty"
+    encrypted_field = EncryptedField.new(fields: [ { name: 'foo', value: 'bar' } ], secret_key: secret_key)
+    encrypted_value = encrypted_field.encrypt_field(encrypted_field.fields[0])
+
+    assert_equal(encrypted_field.foo_decrypted, 'bar')
   end
 end

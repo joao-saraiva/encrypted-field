@@ -18,4 +18,12 @@ class TestEncryptedField < Minitest::Test
     assert_equal(encrypted_field.encrypt_field(encrypted_field.fields[0]),
                  'oYQSxlWVMwigi9apzw==--FnoVavjgmVCdRBlX--L+FlLb9iI2klllAe3hVQPQ==')
   end
+
+  def test_decrypt_field
+    secret_key = "Aswertyuioasdfghjkqwertyuiqwerty"
+    encrypted_field = EncryptedField.new(fields: [ { name: 'foo', value: 'bar' } ], secret_key: secret_key)
+    encrypted_value = encrypted_field.encrypt_field(encrypted_field.fields[0])
+
+    assert_equal(encrypted_field.decrypt_field(encrypted_value, 'bar'))
+  end
 end
